@@ -3,15 +3,21 @@ package lkt.crack.util;
 import lkt.crack.core.LktService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 public class ContextHelper {
 	private static Context sContext;
+	private static PackageManager sPm;
 
 	private ContextHelper() {
 	}
 
 	public static void init(Context context) {
 		sContext = context;
+		if (sContext != null) {
+			sPm = sContext.getPackageManager();
+		}
 	}
 
 	public static void startLktService(Intent intent) {
@@ -30,5 +36,16 @@ public class ContextHelper {
 			return sContext.getPackageName();
 		}
 		return null;
+	}
+
+	public static String getApkFilePackageName(String path) {
+		String pkgName = null;
+		if (sPm != null) {
+			PackageInfo pi = sPm.getPackageArchiveInfo(path, 1);
+			if (pi != null) {
+				pkgName = pi.packageName;
+			}
+		}
+		return pkgName;
 	}
 }

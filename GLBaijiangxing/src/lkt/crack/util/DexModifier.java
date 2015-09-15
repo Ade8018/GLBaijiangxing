@@ -8,7 +8,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.zip.Adler32;
 
-import lkt.crack.core.StringBytesAlterationUtil;
 
 import android.util.Log;
 

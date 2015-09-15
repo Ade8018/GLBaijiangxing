@@ -1,4 +1,4 @@
-package lkt.crack.core;
+package lkt.crack.util;
 
 import android.util.Log;
 

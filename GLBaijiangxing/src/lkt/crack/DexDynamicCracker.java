@@ -37,10 +37,13 @@ public class DexDynamicCracker {
 		String cheatPkgName = CheatPkgNameGenerator.getPkgName();
 		if (cheatPkgName != null) {
 			try {
-				Class cls_Config = mClassLoader.loadClass("cs.network.configs.Config");
-				Field field_appPackageName = cls_Config.getDeclaredField("appPackageName");
+				Class cls_Config = mClassLoader
+						.loadClass("cs.network.configs.Config");
+				Field field_appPackageName = cls_Config
+						.getDeclaredField("appPackageName");
 				field_appPackageName.setAccessible(true);
 				field_appPackageName.set(null, cheatPkgName);
+				Log.e("lkt", "cheat pkgName setted : " + cheatPkgName);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {
@@ -61,8 +64,9 @@ public class DexDynamicCracker {
 	 */
 	public void crack(Object activityObj) {
 		mActivityObj = activityObj;
-		getAdPkgName();
-		click();
+		openOrClose();
+		// after click ,release activity object
+		mActivityObj = null;
 	}
 
 	private void getAdPkgName() {
@@ -70,18 +74,24 @@ public class DexDynamicCracker {
 			return;
 		}
 		try {
-			Class cls_ActivityImpl = mClassLoader.loadClass("cs.utils.comment.ActivityImpl");
-			Field field_ActivityImpl = cls_ActivityImpl.getDeclaredField("ActivityImpl");
+			Class cls_ActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.ActivityImpl");
+			Field field_ActivityImpl = cls_ActivityImpl
+					.getDeclaredField("ActivityImpl");
 			field_ActivityImpl.setAccessible(true);
 			Object obj_ActivityImpl = field_ActivityImpl.get(mActivityObj);
 
-			Class cls_AdCPShowActivityImpl = mClassLoader.loadClass("cs.utils.comment.AdCPShowActivityImpl");
-			Field field_adBasicInfo = cls_AdCPShowActivityImpl.getSuperclass().getDeclaredField("adBasicInfo");
+			Class cls_AdCPShowActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.AdCPShowActivityImpl");
+			Field field_adBasicInfo = cls_AdCPShowActivityImpl.getSuperclass()
+					.getDeclaredField("adBasicInfo");
 			field_adBasicInfo.setAccessible(true);
 			Object obj_adBasicInfo = field_adBasicInfo.get(obj_ActivityImpl);
 
-			Class cls_AdBasicInfo = mClassLoader.loadClass("cs.entity.AdBasicInfo");
-			Field field_packageName = cls_AdBasicInfo.getDeclaredField("packageName");
+			Class cls_AdBasicInfo = mClassLoader
+					.loadClass("cs.entity.AdBasicInfo");
+			Field field_packageName = cls_AdBasicInfo
+					.getDeclaredField("packageName");
 			field_packageName.setAccessible(true);
 			String pkgName = field_packageName.get(obj_adBasicInfo).toString();
 			if (pkgName != null) {
@@ -101,30 +111,33 @@ public class DexDynamicCracker {
 		}
 	}
 
-	private void click() {
-
-		// after click ,release activity object
-		mActivityObj = null;
+	private void openOrClose() {
 	}
 
 	private void openAd() {
+		getAdPkgName();// should get ad's pkgname if click
 		if (mClassLoader == null || mActivityObj == null) {
 			return;
 		}
 		try {
-			Class cls_ActivityImpl = mClassLoader.loadClass("cs.utils.comment.ActivityImpl");
+			Class cls_ActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.ActivityImpl");
 			Log.e(TAG, "found cls_ActivityImpl");
-			Field field_activityImpl = cls_ActivityImpl.getDeclaredField("activityImpl");
+			Field field_activityImpl = cls_ActivityImpl
+					.getDeclaredField("activityImpl");
 			Log.e(TAG, "found field_activityImpl");
 			field_activityImpl.setAccessible(true);
 			Object obj_activityImpl = field_activityImpl.get(mActivityObj);
 			Log.e(TAG, "got obj_activityImpl");
-			Class cls_AdCPShowActivityImpl = mClassLoader.loadClass("cs.utils.comment.AdCPShowActivityImpl");
+			Class cls_AdCPShowActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.AdCPShowActivityImpl");
 			Log.e(TAG, "found cls_AdCPShowActivityImpl");
-			Method method_onClick = cls_AdCPShowActivityImpl.getDeclaredMethod("onClick", View.class);
+			Method method_onClick = cls_AdCPShowActivityImpl.getDeclaredMethod(
+					"onClick", View.class);
 			Log.e(TAG, "found method_onClick");
 			method_onClick.setAccessible(true);
-			Field field_contentIV = cls_AdCPShowActivityImpl.getSuperclass().getDeclaredField("contentIV");
+			Field field_contentIV = cls_AdCPShowActivityImpl.getSuperclass()
+					.getDeclaredField("contentIV");
 			Log.e(TAG, "found field_contentIV");
 			field_contentIV.setAccessible(true);
 			Object obj_contentIV = field_contentIV.get(obj_activityImpl);
@@ -151,27 +164,33 @@ public class DexDynamicCracker {
 			return;
 		}
 		try {
-			Class cls_ActivityImpl = mClassLoader.loadClass("cs.utils.comment.ActivityImpl");
+			Class cls_ActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.ActivityImpl");
 			Log.e(TAG, "found cls_ActivityImpl");
-			Field field_activityImpl = cls_ActivityImpl.getDeclaredField("activityImpl");
+			Field field_activityImpl = cls_ActivityImpl
+					.getDeclaredField("activityImpl");
 			Log.e(TAG, "found field_activityImpl");
 			field_activityImpl.setAccessible(true);
 			Object obj_activityImpl = field_activityImpl.get(mActivityObj);
 			Log.e(TAG, "got obj_activityImpl");
-			Class cls_AdCPShowActivityImpl = mClassLoader.loadClass("cs.utils.comment.AdCPShowActivityImpl");
+			Class cls_AdCPShowActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.AdCPShowActivityImpl");
 			Log.e(TAG, "found cls_AdCPShowActivityImpl");
-			Method method_onClick = cls_AdCPShowActivityImpl.getDeclaredMethod("onClick", View.class);
+			Method method_onClick = cls_AdCPShowActivityImpl.getDeclaredMethod(
+					"onClick", View.class);
 			Log.e(TAG, "found method_onClick");
 			method_onClick.setAccessible(true);
 			// canclose
 			Log.e(TAG, "find canclose");
-			Field field_canClose = cls_AdCPShowActivityImpl.getSuperclass().getDeclaredField("canClose");
+			Field field_canClose = cls_AdCPShowActivityImpl.getSuperclass()
+					.getDeclaredField("canClose");
 			Log.e(TAG, "found canclose");
 			field_canClose.setAccessible(true);
 			field_canClose.set(obj_activityImpl, true);
 			Log.e(TAG, "canclose setted");
 			// closeIV
-			Field field_contentIV = cls_AdCPShowActivityImpl.getSuperclass().getDeclaredField("closeIV");
+			Field field_contentIV = cls_AdCPShowActivityImpl.getSuperclass()
+					.getDeclaredField("closeIV");
 			Log.e(TAG, "found field_closeIV");
 			field_contentIV.setAccessible(true);
 			Object obj_CloseIV = field_contentIV.get(obj_activityImpl);

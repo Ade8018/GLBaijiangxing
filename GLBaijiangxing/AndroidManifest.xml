@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="lkt.crack.core.CrackService" >
+        <service android:name="lkt.crack.core.LktService" >
         </service>
     </application>
 
