@@ -1,0 +1,16 @@
+dd ad crack step :
+
+1.Add code 
+	"
+	@Override
+	public void setContentView(View view, LayoutParams params) {
+		view.setVisibility(View.GONE);
+		super.setContentView(view, params);
+	}
+	"
+			to the activity in its sdk to hide the ad view.
+			
+2.invoke Entry.onInited(String ,String) at the proper position in its sdk.
+3.invoke Entry.onDexDownloaded() at the proper position in its sdk.
+4.invode Entry.onDexLoaded(ClassLoader) at the proper position in its sdk.
+5.invoid Entry.onActivityCreated(Object) at the proper position in its sdk.

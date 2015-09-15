@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_layout_edit_send"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="1dp" />
+
+    <EditText
+        android:id="@+id/et_edit_send_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:hint="请输入评论"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/btn_edit_send_send"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:background="@drawable/selector_btn_edit_send_send" />
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="1dp" />
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3388FF"
+    android:orientation="horizontal"
+    android:weightSum="4" >
+
+    <RadioButton
+        android:id="@+id/rb_layout_navi_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:text="首页"
+        android:textColor="@drawable/selector_rb_layout_navi"
+        android:textSize="25sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="#FFFFFF" />
+
+    <RadioButton
+        android:id="@+id/rb_layout_navi_mid"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:text="攻略"
+        android:textColor="@drawable/selector_rb_layout_navi"
+        android:textSize="25sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="#FFFFFF" />
+
+    <RadioButton
+        android:id="@+id/rb_layout_navi_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:text="技巧"
+        android:textColor="@drawable/selector_rb_layout_navi"
+        android:textSize="25sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="#FFFFFF" />
+
+    <RadioButton
+        android:id="@+id/rb_layout_navi_setting"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:text="设置"
+        android:textColor="@drawable/selector_rb_layout_navi"
+        android:textSize="25sp" />
+
+</RadioGroup>

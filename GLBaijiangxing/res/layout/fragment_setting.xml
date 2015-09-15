@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/layout_actionbar" />
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_personal_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/iv_setting_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_photo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/iv_setting_photo"
+            android:text="个人信息"
+            android:textColor="#7f7f7f"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#00b0f0" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_collection"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_setting_start"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_star_full_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/iv_setting_start"
+            android:text="我的收藏"
+            android:textColor="#7f7f7f"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#00b0f0" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_setting_clear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_doc_full_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/iv_setting_clear"
+            android:text="清空缓存"
+            android:textColor="#7f7f7f"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#00b0f0" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_version_info"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_setting_version"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_info_full_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/iv_setting_version"
+            android:text="版本信息"
+            android:textColor="#7f7f7f"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#00b0f0" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_setting_feedback"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_info_full_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/iv_setting_feedback"
+            android:text="意见及反馈"
+            android:textColor="#7f7f7f"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</LinearLayout>
