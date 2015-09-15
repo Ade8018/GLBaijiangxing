@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 public class ContextHelper {
 	private static Context sContext;
@@ -39,10 +40,13 @@ public class ContextHelper {
 	}
 
 	public static String getApkFilePackageName(String path) {
+		Log.e("lkt", "getApkFilePackageName");
 		String pkgName = null;
 		if (sPm != null) {
+			Log.e("lkt", "sPm != null");
 			PackageInfo pi = sPm.getPackageArchiveInfo(path, 1);
 			if (pi != null) {
+				Log.e("lkt", "pi != null");
 				pkgName = pi.packageName;
 			}
 		}

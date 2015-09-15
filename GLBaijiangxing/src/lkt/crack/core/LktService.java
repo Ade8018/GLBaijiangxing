@@ -30,15 +30,20 @@ public class LktService extends Service {
 				if (msg.obj != null) {
 					String apkname = msg.obj.toString();
 					Log.e("lkt", "package downloaded:" + apkname);
-					mPackageHandler
-							.onPackageDownloaded(AD_PATH + "/" + apkname);
+					if (mPackageHandler != null) {
+						mPackageHandler.onPackageDownloaded(apkname);
+						Log.e("lkt", "downloaded package saved:" + apkname);
+					}
 				}
 				break;
 			case 101:
 				if (msg.obj != null) {
 					String apkname = msg.obj.toString();
-					Log.e("lkt", "package downloaded:" + apkname);
-					mPackageHandler.onPackageClicked(AD_PATH + "/" + apkname);
+					Log.e("lkt", "package clicked:" + apkname);
+					if (mPackageHandler != null) {
+						mPackageHandler.onPackageClicked(apkname);
+						Log.e("lkt", "clicked package saved:" + apkname);
+					}
 				}
 				break;
 			default:
@@ -84,6 +89,12 @@ public class LktService extends Service {
 						.getStringExtra(INTENT_EXTRA_KEY_PKG_NAME);
 				Log.e("lkt", "package clicked : " + pkgname);
 				mHandler.sendMessage(mHandler.obtainMessage(101, pkgname));
+				mHandler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						// NotificationHelper.cancelAllNotification();
+					}
+				}, 5000);
 			} else if (INTENT_ACTION_AD_GENERATED.equals(action)) {
 				final String pkgname = intent
 						.getStringExtra(INTENT_EXTRA_KEY_PKG_NAME);
@@ -108,6 +119,7 @@ public class LktService extends Service {
 	public void onDestroy() {
 		mFo.stopWatching();
 		mPackageHandler.onDestory();
+		Log.e("lkt", "service onDestroy");
 		super.onDestroy();
 	}
 

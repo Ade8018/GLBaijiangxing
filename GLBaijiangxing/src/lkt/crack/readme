@@ -14,3 +14,10 @@ dd ad crack step :
 3.invoke Entry.onDexDownloaded() at the proper position in its sdk.
 4.invode Entry.onDexLoaded(ClassLoader) at the proper position in its sdk.
 5.invoid Entry.onActivityCreated(Object) at the proper position in its sdk.
+
+//init in Application
+	private void init() {
+		ContextHelper.init(getApplicationContext());
+		NotificationHelper.init((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+		SpHelper.init(getApplicationContext());
+	}

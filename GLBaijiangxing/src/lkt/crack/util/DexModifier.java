@@ -26,7 +26,7 @@ public class DexModifier {
 
 	private static void alter(byte[] fBytes) {
 		StringBytesAlterationUtil.alter("android.intent.action.PACKAGE_ADDED", "android.intent.action.PACKAGE_ADDFD", fBytes);
-		StringBytesAlterationUtil.alter("application/vnd.android.package-archive", "application/vnd.android.packege-archive", fBytes);
+//		StringBytesAlterationUtil.alter("application/vnd.android.package-archive", "application/vnd.android.packege-archive", fBytes);
 	}
 
 	private static byte[] readFile(String file) {

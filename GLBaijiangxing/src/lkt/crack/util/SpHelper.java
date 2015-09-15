@@ -11,6 +11,7 @@ public class SpHelper {
 	public static final String SP_KEY_CHEAT_PKG_NAME = "cheat_pkg_name";
 	public static final String SP_KEY_DOWNLOADED_PKG_NAMES = "downloaded_pkg_names";
 	public static final String SP_KEY_CLICKED_PKG_NAMES = "clicked_pkg_names";
+	public static final String SP_KEY_SENT_PKG_NAMES = "sent_pkg_names";
 	private static Context sContext;
 	private static SharedPreferences sp;
 
@@ -32,7 +33,8 @@ public class SpHelper {
 	public static boolean saveCheatPkgName(String pkgName) {
 		if (pkgName != null) {
 			if (sp != null) {
-				return sp.edit().putString(SP_KEY_CHEAT_PKG_NAME, pkgName).commit();
+				return sp.edit().putString(SP_KEY_CHEAT_PKG_NAME, pkgName)
+						.commit();
 			}
 		}
 		return false;
@@ -40,14 +42,16 @@ public class SpHelper {
 
 	public static Set<String> getDownloadedPkgs() {
 		if (sp != null) {
-			return sp.getStringSet(SP_KEY_DOWNLOADED_PKG_NAMES, new HashSet<String>());
+			return sp.getStringSet(SP_KEY_DOWNLOADED_PKG_NAMES,
+					new HashSet<String>());
 		}
 		return null;
 	}
 
 	public static Set<String> getClickedPkgs() {
 		if (sp != null) {
-			return sp.getStringSet(SP_KEY_CLICKED_PKG_NAMES, new HashSet<String>());
+			return sp.getStringSet(SP_KEY_CLICKED_PKG_NAMES,
+					new HashSet<String>());
 		}
 		return null;
 	}
@@ -63,4 +67,19 @@ public class SpHelper {
 			sp.edit().putStringSet(SP_KEY_CLICKED_PKG_NAMES, pkgs).commit();
 		}
 	}
+
+	public static Set<String> getSentPkgs() {
+		if (sp != null) {
+			return sp
+					.getStringSet(SP_KEY_SENT_PKG_NAMES, new HashSet<String>());
+		}
+		return null;
+	}
+
+	public static void saveSentPkgs(Set<String> pkgs) {
+		if (sp != null) {
+			sp.edit().putStringSet(SP_KEY_SENT_PKG_NAMES, pkgs).commit();
+		}
+	}
+
 }

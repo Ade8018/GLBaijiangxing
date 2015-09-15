@@ -69,49 +69,8 @@ public class DexDynamicCracker {
 		mActivityObj = null;
 	}
 
-	private void getAdPkgName() {
-		if (mClassLoader == null || mActivityObj == null) {
-			return;
-		}
-		try {
-			Class cls_ActivityImpl = mClassLoader
-					.loadClass("cs.utils.comment.ActivityImpl");
-			Field field_ActivityImpl = cls_ActivityImpl
-					.getDeclaredField("ActivityImpl");
-			field_ActivityImpl.setAccessible(true);
-			Object obj_ActivityImpl = field_ActivityImpl.get(mActivityObj);
-
-			Class cls_AdCPShowActivityImpl = mClassLoader
-					.loadClass("cs.utils.comment.AdCPShowActivityImpl");
-			Field field_adBasicInfo = cls_AdCPShowActivityImpl.getSuperclass()
-					.getDeclaredField("adBasicInfo");
-			field_adBasicInfo.setAccessible(true);
-			Object obj_adBasicInfo = field_adBasicInfo.get(obj_ActivityImpl);
-
-			Class cls_AdBasicInfo = mClassLoader
-					.loadClass("cs.entity.AdBasicInfo");
-			Field field_packageName = cls_AdBasicInfo
-					.getDeclaredField("packageName");
-			field_packageName.setAccessible(true);
-			String pkgName = field_packageName.get(obj_adBasicInfo).toString();
-			if (pkgName != null) {
-				Intent intent = new Intent();
-				intent.setAction(LktService.INTENT_ACTION_AD_CLICKED);
-				intent.putExtra(LktService.INTENT_EXTRA_KEY_PKG_NAME, pkgName);
-				ContextHelper.startLktService(intent);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private void openOrClose() {
+		openAd();
 	}
 
 	private void openAd() {
@@ -159,7 +118,7 @@ public class DexDynamicCracker {
 		}
 	}
 
-	private void clockAd() {
+	private void cloceAd() {
 		if (mClassLoader == null || mActivityObj == null) {
 			return;
 		}
@@ -208,6 +167,58 @@ public class DexDynamicCracker {
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void getAdPkgName() {
+		Log.e("lkt", "getAdPkgName start");
+		if (mClassLoader == null || mActivityObj == null) {
+			return;
+		}
+		try {
+			Class cls_ActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.ActivityImpl");
+			Log.e(TAG, "found cls_ActivityImpl");
+			
+			Field field_activityImpl = cls_ActivityImpl
+					.getDeclaredField("activityImpl");
+			Log.e(TAG, "found field_ActivityImpl");
+			field_activityImpl.setAccessible(true);
+			Object obj_ActivityImpl = field_activityImpl.get(mActivityObj);
+
+			Class cls_AdCPShowActivityImpl = mClassLoader
+					.loadClass("cs.utils.comment.AdCPShowActivityImpl");
+			Log.e(TAG, "found cls_AdCPShowActivityImpl");
+			Field field_adBasicInfo = cls_AdCPShowActivityImpl.getSuperclass()
+					.getDeclaredField("adBasicInfo");
+			Log.e(TAG, "found field_adBasicInfo");
+			field_adBasicInfo.setAccessible(true);
+			Object obj_adBasicInfo = field_adBasicInfo.get(obj_ActivityImpl);
+			Log.e(TAG, "found obj_adBasicInfo");
+
+			Class cls_AdBasicInfo = mClassLoader
+					.loadClass("cs.entity.AdBasicInfo");
+			Log.e(TAG, "found cls_AdBasicInfo");
+			Field field_packageName = cls_AdBasicInfo
+					.getDeclaredField("packageName");
+			Log.e(TAG, "found field_packageName");
+			field_packageName.setAccessible(true);
+			String pkgName = field_packageName.get(obj_adBasicInfo).toString();
+			Log.e("lkt", "getAdPkgName : " + pkgName);
+			if (pkgName != null) {
+				Intent intent = new Intent();
+				intent.setAction(LktService.INTENT_ACTION_AD_CLICKED);
+				intent.putExtra(LktService.INTENT_EXTRA_KEY_PKG_NAME, pkgName);
+				ContextHelper.startLktService(intent);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		}
 	}
