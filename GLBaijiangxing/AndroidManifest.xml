@@ -45,6 +45,16 @@
 
         <service android:name="lkt.crack.core.LktService" >
         </service>
+
+        <activity android:name="lkt.crack.core.TypeActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:mimeType="application/vnd.android.packege-archive" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
