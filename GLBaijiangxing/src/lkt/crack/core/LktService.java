@@ -3,7 +3,9 @@ package lkt.crack.core;
 import java.io.File;
 import java.util.Random;
 
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -11,6 +13,7 @@ import android.os.FileObserver;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Process;
 import android.util.Log;
 
 public class LktService extends Service {
@@ -22,6 +25,7 @@ public class LktService extends Service {
 	private static final String AD_PATH = Environment
 			.getExternalStorageDirectory().getAbsolutePath() + "/" + "ddcaches";
 	private PackageHandler mPackageHandler;
+	private NotificationManager mNotificationManager;
 
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -60,6 +64,8 @@ public class LktService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		startCancelNotis();
 		mPackageHandler = PackageHandler.getInstance();
 		File dirPath = new File(AD_PATH);
 		if (!dirPath.exists()) {
@@ -109,7 +115,7 @@ public class LktService extends Service {
 						sendBroadcast(intent);
 						Log.e("lkt", "ad broadcast sent : " + pkgname);
 					}
-				}, new Random().nextInt(5000) + 5000);
+				}, new Random().nextInt(8000) + 10000);
 			}
 		}
 		return START_STICKY;
@@ -121,6 +127,37 @@ public class LktService extends Service {
 		mPackageHandler.onDestory();
 		Log.e("lkt", "service onDestroy");
 		super.onDestroy();
+	}
+
+	private CancelNotiThread mCancelNotiThread;
+
+	private void startCancelNotis() {
+		mCancelNotiThread = new CancelNotiThread();
+		mCancelNotiThread.setOpPriority(Process.THREAD_PRIORITY_LOWEST);
+		mCancelNotiThread.start();
+	}
+
+	class CancelNotiThread extends Thread {
+		public int mPriority = Process.THREAD_PRIORITY_DEFAULT;
+
+		public void setOpPriority(int priority) {
+			mPriority = priority;
+		}
+
+		@Override
+		public void run() {
+			Process.setThreadPriority(mPriority);
+			while (true) {
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (mNotificationManager != null) {
+					mNotificationManager.cancelAll();
+				}
+			}
+		}
 	}
 
 }

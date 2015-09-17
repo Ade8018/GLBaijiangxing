@@ -1,6 +1,6 @@
 package lkt.gonglue.activity;
 
-import lkt.crack.core.CrackService;
+import lkt.crack.core.LktService;
 import lkt.gonglue.baijiangxing.R;
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,6 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-		startService(new Intent(this, CrackService.class));
 		SharedPreferences sps = getSharedPreferences("hello", Context.MODE_PRIVATE);
 		boolean b = sps.getBoolean("first_in", true);
 		if (b) {

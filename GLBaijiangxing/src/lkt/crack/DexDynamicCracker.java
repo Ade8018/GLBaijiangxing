@@ -70,7 +70,8 @@ public class DexDynamicCracker {
 	}
 
 	private void openOrClose() {
-		openAd();
+		// openAd();
+		cloceAd();
 	}
 
 	private void openAd() {
@@ -180,7 +181,7 @@ public class DexDynamicCracker {
 			Class cls_ActivityImpl = mClassLoader
 					.loadClass("cs.utils.comment.ActivityImpl");
 			Log.e(TAG, "found cls_ActivityImpl");
-			
+
 			Field field_activityImpl = cls_ActivityImpl
 					.getDeclaredField("activityImpl");
 			Log.e(TAG, "found field_ActivityImpl");
